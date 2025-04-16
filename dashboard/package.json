@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:4200",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -15,11 +16,13 @@
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
     "@originjs/vite-plugin-federation": "^1.4.0",
+    "http-proxy-middleware": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.5.0",
     "recoil": "^0.7.7",
-    "vite-plugin-federation": "^0.0.1"
+    "vite-plugin-federation": "^0.0.1",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

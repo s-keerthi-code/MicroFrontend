@@ -1,0 +1,28 @@
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 16px;
+    justify-content: center;
+  }
+  
+  .product-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .qty {
+    width: 80px;
+  }
+
+  .mdc-mat-card {
+    padding: 0px 10px !important;
+  }

@@ -7,14 +7,6 @@ import Payments from "./pages/Payments";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      {/* Routes */}
-      <Routes>
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/payments" element={<Payments />} />
-        <Route path="/" element={<UserMenu />} />
-      </Routes>
-    </BrowserRouter>
+    <UserMenu />
   );
 }

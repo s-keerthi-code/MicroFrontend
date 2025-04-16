@@ -1,0 +1,10 @@
+# Ignore node_modules everywhere
+**/node_modules
+
+# Ignore dist/build folders
+**/dist
+**/build
+
+# IDE settings
+.vscode/
+*.log

@@ -1,95 +1,70 @@
 import React, { useEffect, useState } from "react";
+import { useStore } from 'zustand';
 import {
   AppBar,
   Toolbar,
-//   Typography,
+  //   Typography,
   Box,
   Avatar,
   TextField,
   Grid,
-//   Card,
-//   CardContent,
-//   CardMedia,
+  //   Card,
+  //   CardContent,
+  //   CardMedia,
   Container,
+  Alert,
 } from "@mui/material";
 const UserMenu = React.lazy(() => import('user_menu/UserMenu'));
+import { cartStore } from './store/cartStore';
 
-const dummyProducts = [
-    {
-      title: "Wireless Headphones",
-      image: "https://cdn-icons-png.flaticon.com/512/724/724664.png",
-    },
-    {
-      title: "Smartphone",
-      image: "https://cdn-icons-png.flaticon.com/512/833/833472.png",
-    },
-    {
-      title: "Running Shoes",
-      image: "https://cdn-icons-png.flaticon.com/512/892/892458.png",
-    },
-    {
-      title: "Smartwatch",
-      image: "https://cdn-icons-png.flaticon.com/512/891/891419.png",
-    },
-    {
-      title: "Backpack",
-      image: "https://cdn-icons-png.flaticon.com/512/865/865021.png",
-    },
-  ];  
 
 function Dashboard() {
-  const [products, setProducts] = useState<any[]>([]);
 
-  // Simulate API call delay
+
+  const cart = useStore(cartStore, (state) => state.cart);
+  const promocode = useStore(cartStore, (state) => state.promocode);
+  const discount = useStore(cartStore, (state) => state.discount);
+
+  const [showPromoAlert, setShowPromoAlert] = useState(false);
+
+
   useEffect(() => {
-    setTimeout(() => {
-      setProducts(dummyProducts);
-    }, 500);
-  }, []);
+    if (cart.length && promocode && discount > 0) {
+      setShowPromoAlert(true);
+    } else setShowPromoAlert(false);
+  }, [cart.length, promocode, discount]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Container sx={{ flexGrow: 1 }}>
       {/* App Bar */}
       <AppBar position="fixed" sx={{ zIndex: 1300 }}>
         <Toolbar>
-          
-            My MicroFrontend App
-          
+
+          My MicroFrontend App
+
           <TextField
             size="small"
             placeholder="Search..."
             variant="outlined"
-            style={{ width: '550px', margin:'0px 30px'}}
+            style={{ width: '550px', margin: '0px 30px' }}
             sx={{ bgcolor: "white", borderRadius: 1, mr: 2 }}
           />
           <UserMenu />
         </Toolbar>
       </AppBar>
+      <Grid>
 
-      {/* Main content */}
-      <Toolbar /> {/* Spacer for fixed AppBar */}
-      <Container sx={{ mt: 4 }}>
-        {/* <Grid container spacing={3}>
-          {products.map((product, index) => (
-            <>{product} + {index}</>
-            // <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            //   <Card>
-            //     <CardMedia
-            //       component="img"
-            //       height="180"
-            //       image={product.image}
-            //       alt={product.title}
-            //     />
-            //     <CardContent>
-            //       <Typography variant="h6">{product.title}</Typography>
-            //     </CardContent>
-            //   </Card>
-            // </Grid>
-          ))}
-        </Grid> */}
-      </Container>
-    </Box>
+     
+
+      <product-list cartStore={cartStore}></product-list>
+
+      { showPromoAlert && <Alert severity="success" onClose={() => setShowPromoAlert(false)}>
+        `🎉 Hurray! You're eligible for a flat discount of ₹${discount}! 🛍️`
+      </Alert> }
+     </Grid>
+    </Container>
   );
 }
 
 export default Dashboard;
+
