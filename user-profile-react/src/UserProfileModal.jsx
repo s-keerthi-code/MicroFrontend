@@ -181,10 +181,7 @@ const UserProfileModal = ({ open, onClose }) => {
                   }
                 }}
               >
-                <FavoriteBorder color="primary" fontSize="large" />
-                <Typography variant="h6" color="textSecondary" mt={1}>
-                  Wishlisted Items will appear here.
-                </Typography>
+                
               </Paper>
             </Box>
           </Grid>

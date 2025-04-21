@@ -1,37 +1,4 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
@@ -42,5 +9,40 @@
 }
 
 .mat-mdc-card  {
-  background-color: black !important;
+  background-color: #b4b3b321 !important;
+  padding: 10px;
+  img {
+    width: 280px;
+    height: 250px;
+    object-fit: cover;
+    margin: 10px 0px;
+  }
+
+  button {
+    background-color: #1976d2 !important;
+  }
+}
+
+.dashboard-container {
+  margin: 0;
+  max-width: none;
+}
+
+.dashboard-grid {
+  /* width: 100vw; */
+  top: 0;
+  left: 0;
+  padding: 1em;
+  display: inline-flex;
+}
+
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 1200px) {
+  .css-5c1adp-MuiContainer-root {
+      max-width: none !important;
+  }
 }

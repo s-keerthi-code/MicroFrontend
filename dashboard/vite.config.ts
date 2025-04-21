@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     federation({
       remotes: {
-        user_menu: 'http://localhost:5174/dist/assets/remoteEntry.js',
+        user_menu: 'http://localhost:5175/dist/assets/remoteEntry.js',
       },
       name: 'dashboard',
       exposes: {

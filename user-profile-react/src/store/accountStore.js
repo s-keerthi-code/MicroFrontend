@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export const useAccountStore = create((set) => ({
-  email: 'john@example.com',
+  email: 'Remyjohn@example.com',
   plan: 'Premium',
   lastLogin: '2025-04-01',
   theme: 'light',

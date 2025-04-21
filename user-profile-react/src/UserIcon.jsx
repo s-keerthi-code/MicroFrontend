@@ -1,28 +1,24 @@
-import React, {useEffect,  useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Avatar,
   Menu,
   MenuItem,
   Typography,
   Button,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  Card,
-  CardActions,
-  DialogContentText
+  IconButton
 } from '@mui/material';
 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAccountStore } from './store/accountStore';
 import UserProfileModal from './UserProfileModal';
+import CartModal from './CartModal';
 
 export default function UserMenu() {
 
-  const windowCart = window.cartStore.getState().cart;
+  const windowCart = window.cartStore?.getState()?.cart;
   const { email, plan, showModal, setShowModal } = useAccountStore();
   const [anchorEl, setAnchorEl] = useState(null);
+
   const [showCartModal, setShowCartModal] = useState(false);
   const [cart, setCart] = useState([]);
 
@@ -40,13 +36,6 @@ export default function UserMenu() {
 
     // Initialize with current state
     setCart(store.getState().cart);
-
-    // // Subscribe to updates
-    // const unsubscribe = store.subscribe((state) => {
-    //   setCart(state.cart);
-    // });
-
-    // return () => unsubscribe?.();
   }, [windowCart]);
 
   console.log('cart is', cart);
@@ -54,12 +43,15 @@ export default function UserMenu() {
   return (
     <>
       <IconButton onClick={handleOpen}>
-        <Avatar alt="User Avatar" />
+        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       </IconButton>
       <IconButton onClick={() => setShowCartModal(true)} >
-        <ShoppingCartIcon/>       
-      </IconButton> 
-      <span style={{color:'white', marginLeft: '5px'}}></span>
+        <span style={{ color: '#fff' }}>
+          <ShoppingCartIcon style={{ color: '#fff' }}/>
+          {cart.length > 0 ? `(${cart.length})` : ''}
+          </span>
+      </IconButton>
+      <span style={{ color: 'white', marginLeft: '5px' }}></span>
 
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem>
@@ -82,36 +74,8 @@ export default function UserMenu() {
       </Menu>
 
       {showModal && <UserProfileModal open={showModal} onClose={() => setShowModal(false)} />}
-      {
-        showCartModal && <>
-          <Dialog
-          open={showCartModal}
-          onClose={() => setShowCartModal(false)}
-          fullWidth
-          maxWidth="md"
-          >
-            <DialogTitle>Your Cart</DialogTitle>
-            <DialogContent>
-              
-              {
-                cart?.map((item) => {
-                  return(
-                  <Card>
-                    <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-                      {item.name}
-                    </Typography>
-                    <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>Quantity: {item.quantity}</Typography>
-                    <CardActions>
-                      <Button size="small">Remove from Cart</Button>
-                    </CardActions>
-                  </Card>)
-                })
-              }
-              
-            </DialogContent>
-          </Dialog>
-        </>
-      }
+      {showCartModal && <CartModal open={showCartModal} onClose={() => setShowCartModal(false)} />}
+
     </>
   );
 }
