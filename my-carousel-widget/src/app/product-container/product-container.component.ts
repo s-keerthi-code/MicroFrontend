@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule, NgFor } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 declare global {
   interface Window {
     cartStore: any;
@@ -9,7 +14,9 @@ declare global {
 @Component({
   selector: 'app-product-container',
   templateUrl: './product-container.component.html',
-  styleUrls: ['./product-container.component.css']
+  styleUrls: ['./product-container.component.css'],
+  standalone: true,
+  imports: [MatFormFieldModule, FormsModule, MatCardModule, NgFor, CommonModule, MatInputModule, MatButtonModule]
 })
 
 export class ProductContainerComponent {

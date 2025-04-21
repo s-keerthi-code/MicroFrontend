@@ -2,7 +2,6 @@ import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CarouselWidgetComponent } from './carousel-widget/carousel-widget.component';
 import { createCustomElement } from '@angular/elements';
 import { ProductContainerComponent } from './product-container/product-container.component';
 import { FormsModule } from '@angular/forms';
@@ -14,9 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CarouselWidgetComponent,
-    ProductContainerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProductContainerComponent
   ],
   providers: [],
   bootstrap: []
@@ -41,3 +39,7 @@ export class AppModule implements DoBootstrap{
     customElements.define('product-list', myWidget);
   }
 }
+
+// export class AppModule {
+
+// }
